@@ -6,12 +6,13 @@ public class Wall : MonoBehaviour
 {
     [SerializeField] Transform newWall;
     [SerializeField] Transform newObject;
-    [SerializeField] Object wallObj;
     [SerializeField] string wallName;
+    [SerializeField] string wallDadName = "WallDad";
     [SerializeField] GameObject spike;
     [SerializeField] GameObject coin;
     [SerializeField] LayerMask spikeLayer;
 
+    private Object wallObj;
     private Transform player;
     private bool madeWall;
     private bool madeObject;
@@ -19,7 +20,7 @@ public class Wall : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player").transform;
-        transform.SetParent(GameObject.Find("WallDad").transform);
+        transform.SetParent(GameObject.Find(wallDadName).transform);
 
         wallObj = Resources.Load(wallName);
 
@@ -40,12 +41,11 @@ public class Wall : MonoBehaviour
     {
         if(!madeWall && Vector3.Distance(transform.position, player.position) < 20){
             var temp = Instantiate(wallObj, newWall.position, Quaternion.identity);
-            //temp.GetComponent<SpriteRenderer>().flipX = GetComponent<SpriteRenderer>().flipX;
             GameObject.Destroy(newWall.gameObject);
             madeWall = true;
         }
 
-        if(Vector3.Distance(transform.position, player.position) > 25){
+        if(Vector3.Distance(transform.position, player.position) > 25 && transform.position.y < player.position.y){
             GameObject.Destroy(gameObject);
         }
     }

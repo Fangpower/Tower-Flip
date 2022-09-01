@@ -333,8 +333,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newWall: {fileID: 3635450671255540314}
   newObject: {fileID: 7590169015395701923}
-  wallObj: {fileID: 3201239508595158715, guid: 98099ed00cedb934080bb18579c624d7, type: 3}
   wallName: WoodWallLeft
+  wallDadName: WallDadW
   spike: {fileID: 2458692799895770994, guid: e69b0c63281934249bccac5ddc722f85, type: 3}
   coin: {fileID: 7058995871096817484, guid: 68450c1e2fcc85a4a8f924e13c57f562, type: 3}
   spikeLayer:
@@ -526,8 +526,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newWall: {fileID: 6867261568806740376}
   newObject: {fileID: 318470921932826465}
-  wallObj: {fileID: 4404540184628689222, guid: 6e3dfd3d082864b408aa4e91673122c6, type: 3}
   wallName: WoodWallRight
+  wallDadName: WallDadW
   spike: {fileID: 2458692799895770994, guid: e69b0c63281934249bccac5ddc722f85, type: 3}
   coin: {fileID: 7058995871096817484, guid: 68450c1e2fcc85a4a8f924e13c57f562, type: 3}
   spikeLayer:

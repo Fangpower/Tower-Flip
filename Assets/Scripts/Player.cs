@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
         if(state == State.NoRevive){
             //doneText.SetActive(false);
             FindObjectOfType<LoadingScreen>().Close();
-        } else if(state != State.Dead && Vector2.Distance(transform.position, new Vector2(targX, transform.position.y)) < 0.1f) {
+        } else if(state != State.Dead && Vector2.Distance(transform.position, new Vector2(targX, transform.position.y)) < 0.25f) {
             PlaySound(swoosh);
             targX *= -1;
             deathRot += 180;
@@ -103,7 +103,7 @@ public class Player : MonoBehaviour
                 StartCoroutine("DeathTime");
             } else if(col.CompareTag("Coin")){
                 FindObjectOfType<Score>().AddCoin();
-                PlaySound(coin);
+                //PlaySound(coin);
                 Instantiate(coinPart, col.transform.position, Quaternion.identity);
                 GameObject.Destroy(col.gameObject);
             }

@@ -249,8 +249,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newWall: {fileID: 6585712581563065421}
   newObject: {fileID: 18897502867628724}
-  wallObj: {fileID: 6788804085409575435}
   wallName: GrassWallLeft
+  wallDadName: WallDadG
   spike: {fileID: 2458692799895770994, guid: e69b0c63281934249bccac5ddc722f85, type: 3}
   coin: {fileID: 7058995871096817484, guid: 68450c1e2fcc85a4a8f924e13c57f562, type: 3}
   spikeLayer:
