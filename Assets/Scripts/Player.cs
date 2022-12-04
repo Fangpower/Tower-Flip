@@ -6,9 +6,9 @@ public class Player : MonoBehaviour
 {
     [SerializeField] float speed;
     [SerializeField] Transform cam;
-    [SerializeField] GameObject startText;
-    [SerializeField] GameObject doneButton;
-    [SerializeField] GameObject doneText;
+    [SerializeField] GameObject startUI;
+    [SerializeField] GameObject doneUI;
+    [SerializeField] GameObject gameUI;
 
     [SerializeField] AudioClip swoosh;
     [SerializeField] AudioClip coin;
@@ -19,13 +19,13 @@ public class Player : MonoBehaviour
 
     AudioSource ad;
 
-    enum State{
+    public enum State{
         Wait,
         Alive,
         NoRevive,
         Dead
     }
-    [SerializeField] State state;
+    public State state;
 
     private float targX = -1;
     private float deathRot = 90;
@@ -77,10 +77,9 @@ public class Player : MonoBehaviour
 
     void Switch(){
         if(state == State.Wait){
-            state = State.Alive;
-            startText.SetActive(false);
+            
         }
-        if(state == State.NoRevive){
+        else if(state == State.NoRevive){
             //doneText.SetActive(false);
             FindObjectOfType<LoadingScreen>().Close();
         } else if(state != State.Dead && Vector2.Distance(transform.position, new Vector2(targX, transform.position.y)) < 0.25f) {
@@ -96,11 +95,11 @@ public class Player : MonoBehaviour
             if(col.CompareTag("Spike")){
                 deathYPos = transform.position.y;
                 Instantiate(deathPart, col.transform.position, Quaternion.identity);
-                FindObjectOfType<Score>().Done();
+                
                 PlaySound(death);
                 state = State.Dead;
                 deathHeight = transform.position.y - 10;
-                StartCoroutine("DeathTime");
+                doneUI.SetActive(true);
             } else if(col.CompareTag("Coin")){
                 FindObjectOfType<Score>().AddCoin();
                 //PlaySound(coin);
@@ -116,25 +115,22 @@ public class Player : MonoBehaviour
         ad.Play();
     }
 
-    private IEnumerator DeathTime(){
-        doneButton.SetActive(true);
-        yield return new WaitForSeconds(5f);
-        doneButton.SetActive(false);
-        state = State.NoRevive;
-        doneText.SetActive(true);
-    }
-
     public void Continue(){
-        StopCoroutine("DeathTime");
-        state = State.Wait;
+        state = State.Alive;
         transform.position = new Vector2(targX, deathYPos);
         transform.rotation = Quaternion.Euler(0, targRot, 0);
-        doneButton.SetActive(false);
-        doneText.SetActive(false);
-        startText.SetActive(true);
+        doneUI.SetActive(false);
+
+        FindObjectOfType<Score>().RemoveCoin();
 
         foreach(Collider2D spike in Physics2D.OverlapCircleAll(transform.position, 6)){
             if(spike.CompareTag("Spike")) GameObject.Destroy(spike.gameObject);
         }
+    }
+
+    public void StartGame(){
+        startUI.SetActive(false);
+        gameUI.SetActive(true);
+        state = State.Alive;
     }
 }

@@ -103,7 +103,7 @@ MonoBehaviour:
   newWall: {fileID: 3548193538320681641}
   newObject: {fileID: 7645901226420390992}
   wallName: FireWallRight
-  wallDadName: WallDadF
+  wallDadName: WallDadF(Clone)
   spike: {fileID: 2458692799895770994, guid: e69b0c63281934249bccac5ddc722f85, type: 3}
   coin: {fileID: 7058995871096817484, guid: 68450c1e2fcc85a4a8f924e13c57f562, type: 3}
   spikeLayer:

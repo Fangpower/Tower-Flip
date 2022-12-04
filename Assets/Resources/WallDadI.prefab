@@ -600,7 +600,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8745976781533878663, guid: 4aecccef51d7f1c4b87fa63daddb2b10, type: 3}
       propertyPath: wallDadName
-      value: WallDadI
+      value: WallDadI(Clone)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4aecccef51d7f1c4b87fa63daddb2b10, type: 3}
